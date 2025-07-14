@@ -18,7 +18,7 @@ export const AuthContext = createContext<AuthContextType | null>(null);
 export const AuthProvider = ({ children }: AuthProviderProps) => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
 
-  // 👇 explicit union type so we can store either string or null
+  // ✅ Corrected typing here
   const [username, setUsername] = useState<string | null>(null);
 
   const router = useRouter();
@@ -29,7 +29,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
 
     if (token) {
       setIsAuthenticated(true);
-      setUsername(storedUsername);        // ✅ now allowed
+      setUsername(storedUsername); // ✅ No error now
     }
   }, []);
 
@@ -47,5 +47,3 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
     </AuthContext.Provider>
   );
 };
-
-export default AuthProvider;
