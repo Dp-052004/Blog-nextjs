@@ -1,6 +1,6 @@
 "use client";
 
-import { createContext, useEffect, useState } from "react";
+import { createContext, useEffect, useState, ReactNode } from "react";
 import { useRouter } from "next/navigation";
 
 
@@ -9,6 +9,10 @@ type AuthContextType = {
   username: string | null;
   logout: () => void;
 };
+
+interface AuthProviderProps {
+  children: ReactNode;
+}
 
 export const AuthContext = createContext<AuthContextType | null>(null);
 
